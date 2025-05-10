@@ -2,7 +2,7 @@ const playerOneSymbol = 'X'
 const playerTwoSymbol = 'O'
 let player = ''
 const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
-// [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
+// [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']] <-- this stays for quick copy/paste re-sets if i need to troubleshoot a function
 
 
 displayBoard(board)
@@ -11,13 +11,7 @@ for (let i = 0; i < 9; i++) {
     let column = 0
     let checkPosition = true
 
-    if(i % 2 == 0) {
-        player = playerOneSymbol
-    } else if(i % 2 == 1) {
-        player = playerTwoSymbol
-    } else { 
-        console.log('error')
-    }
+    playerCheck(i)
 
     console.log("It's ", player,"'s turn") 
     
@@ -62,6 +56,16 @@ function displayBoard(gameState){
         ['\n', p7,'|', p8,'|', p9,'\n']
     ]
     console.log(...bigBoard[0],...bigBoard[1],...bigBoard[2],...bigBoard[3],...bigBoard[4])
+}
+
+function playerCheck(i){
+    if(i % 2 == 0) {
+        player = playerOneSymbol
+    } else if(i % 2 == 1) {
+        player = playerTwoSymbol
+    } else { 
+        console.log('error')
+    }
 }
 
 function winner(gameBoard, player) {
