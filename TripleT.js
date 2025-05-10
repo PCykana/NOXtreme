@@ -1,10 +1,9 @@
 let playerOneSymbol = 'X'
 let playerTwoSymbol = 'O'
-const board = [[' ','X',' '],[' ','X',' '],[' ','X',' ']]
+const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 // [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 
 //function createPosition () {
-/*
 console.log(displayBoard(board))
 
 for (let i = 0; i < 9; i++) {
@@ -43,7 +42,7 @@ for (let i = 0; i < 9; i++) {
 }
 
 /* experiments with a big board */
-/*
+
 function displayBoard(gameState){
     let [[p1, p2, p3],[p4, p5, p6],[p7, p8, p9]] = gameState
     const bigBoard = [[p1,'|', p2,'|', p3],['—','+','—','+','—'],[p4,'|', p5,'|', p6],['—','+','—','+','—'],[p7,'|', p8,'|', p9]]
@@ -54,11 +53,10 @@ function displayBoard(gameState){
     console.log(...bigBoard[4])
     return " "
     }
- */
 
-    /*   
-function winner(gameBoard,player) {
-    if(rowCheck(gameBoard[0], player) == true || rowCheck(gameBoard[1],player) == true || rowCheck(gameBoard[2], player) == true){
+ 
+function winner(gameBoard, player) {
+    if(rowCheck(gameBoard[0], player) == true || rowCheck(gameBoard[1], player) == true || rowCheck(gameBoard[2], player) == true){
         return true
     }else if(columnCheck(gameBoard, player) == true ){
         return true
@@ -67,7 +65,7 @@ function winner(gameBoard,player) {
     }
 }
 
-function rowCheck(arr,player) {
+function rowCheck(arr, player) {
 
     if(player == arr[0] && arr[0] == arr[1] && arr[1] == arr[2]){
         return true
@@ -75,24 +73,15 @@ function rowCheck(arr,player) {
         return false
     }
 }
-*/
+
 function columnCheck(arr,player){
-    let isAWin = false
-    console.log(arr)
-    console.log(player)
-    console.log(isAWin)
+    let isAWin = false   
     for (let c = 0; c < 3; c++) {
-        if(player == arr[0][c] && arr[0][c] == arr[1][c] && arr [1][c] == arr[2][c]){
-            console.log(c)
-            console.log(arr[0][c])
-            console.log(arr[1][c])
-            console.log(arr[2][c])
+        if(player == arr[0][c] && arr[0][c] == arr[1][c] && arr[1][c] == arr[2][c]){
             isAWin = true
             break
         }
-        }
+    }
     return isAWin
-
 }
 
-columnCheck(board,'X')
