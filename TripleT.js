@@ -26,8 +26,17 @@ for (let i = 0; i < 9; i++) {
         } else if(i % 2 == 1) {
             board[row][column] = 'O'
         } else { console.log('error')}
-        
+        if(winner(board,'X')){
+            console.log(displayBoard(board))
+            console.log('Player 1 wins!')
+            break
+        } else if(winner(board,'O')){
+            console.log(displayBoard(board))
+            console.log('Player 2 wins!')
+            break
+        } else{
         console.log(displayBoard(board))
+        }
     
 }
 
@@ -43,4 +52,16 @@ function displayBoard(gameState){
     return " "
     }
     
+function winner(gameBoard,player) {
+    if(rowCheck(gameBoard[0], player) == true || rowCheck(gameBoard[1],player) == true || rowCheck(gameBoard[2], player) == true){
+        return true
+    }
+}
 
+function rowCheck(arr,player) {
+    if(arr == [player, player, player]){
+        return true
+    } else {
+        return false
+    }
+}
