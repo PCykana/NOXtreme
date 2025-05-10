@@ -37,6 +37,7 @@ for (let i = 0; i < 9; i++) {
             console.log('Player 2 wins!')
             break
         } else if(drawCheck(board)){
+            console.log(displayBoard(board))
             console.log('*spooky western music* This game ends in a draw pardner.')
         } else {
         console.log(displayBoard(board))
@@ -104,10 +105,10 @@ function diagCheck(arr, player){
 }
 
 function drawCheck(arr){
-    let isADraw = false
-    for(let d = 0; d < array.length; d++) {
+    let isADraw = true
+    for(let d = 0; d <arr.length; d++) {
         if(arr[d].includes(' ')){
-        isADraw = true
+        isADraw = false
         break
         }
     }
