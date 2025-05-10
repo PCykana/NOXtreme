@@ -1,11 +1,11 @@
 let playerOneSymbol = 'X'
 let playerTwoSymbol = 'O'
-const board = [[' ',' ',' '],['X','X','X'],[' ',' ',' ']]
-//[[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
+const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
+//
 
 //function createPosition () {
 console.log(displayBoard(board))
-/*
+
 for (let i = 0; i < 9; i++) {
     
     let row = 0
@@ -30,6 +30,7 @@ for (let i = 0; i < 9; i++) {
         if(winner(board,'X')){
             console.log(displayBoard(board))
             console.log('Player 1 wins!')
+            break
         } else if(winner(board,'O')){
             console.log(displayBoard(board))
             console.log('Player 2 wins!')
@@ -39,7 +40,7 @@ for (let i = 0; i < 9; i++) {
         }
     
 }
-*/
+
 /* experiments with a big board */
 function displayBoard(gameState){
     let [[p1, p2, p3],[p4, p5, p6],[p7, p8, p9]] = gameState
@@ -53,25 +54,19 @@ function displayBoard(gameState){
     }
     
 function winner(gameBoard,player) {
-    console.log(gameBoard)
-    console.log(player)
-    console.log(gameBoard[0])
     if(rowCheck(gameBoard[0], player) == true || rowCheck(gameBoard[1],player) == true || rowCheck(gameBoard[2], player) == true){
-        console.log('Player ',player,' wins!')
         return true
-    }
-}
-
-function rowCheck(arr,player) {
-    console.log(arr)
-    console.log(player)
-    if(arr == [ 'X', 'X', 'X' ]){
-        console.log(true)
-        return true
-    } else {
-        console.log(false)
+    }else {
         return false
     }
 }
 
-winner(board,'X')
+function rowCheck(arr,player) {
+
+    if(player == arr[0] && arr[0] == arr[1] && arr[1] == arr[2]){
+        return true
+    } else {
+        return false
+    }
+}
+
