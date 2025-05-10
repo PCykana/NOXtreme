@@ -60,6 +60,8 @@ function winner(gameBoard, player) {
         return true
     }else if(columnCheck(gameBoard, player) == true ){
         return true
+    }else if(diagCheck(gameBoard, player)){
+
     }else {
         return false
     }
