@@ -7,49 +7,45 @@ const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 
 displayBoard(board)
 for (let i = 0; i < 9; i++) {
+    let row = 0
+    let column = 0
+    let checkPosition = true
     if(i % 2 == 0) {
         player = playerOneSymbol
     } else if(i % 2 == 1) {
         player = playerTwoSymbol
-    } else { console.log('error')}
+    } else { 
+        console.log('error')
+    }
     console.log("It's ", player,"'s turn") 
-    let row = 0
-    let column = 0
-    let checkPosition = true
-        while (checkPosition) {
-            column = Math.floor(Math.random() * 3)
-            row = Math.floor(Math.random() * 3)
-            
-            console.log(row,column)
-            if(board[row][column] == ' '){
+    
+    while (checkPosition) {
+        column = Math.floor(Math.random() * 3)
+        row = Math.floor(Math.random() * 3)    
+        console.log(row,column)
+        if(board[row][column] == ' '){
             checkPosition = false
-            } else {
+        } else {
             checkPosition = true
         }
-        }
-        if(i % 2 == 0) {
-            board[row][column] = playerOneSymbol
-        } else if(i % 2 == 1) {
-            board[row][column] = playerTwoSymbol
-        } else { console.log('error')}
-        if(winner(board,'X')){
-            displayBoard(board)
-            console.log('Player 1 wins!')
-            break
-        } else if(winner(board,'O')){
-            displayBoard(board)
-            console.log('Player 2 wins!')
-            break
-        } else if(drawCheck(board)){
-            displayBoard(board)
-            console.log('*spooky western music* This game ends in a draw pardner.')
-        } else {   
+    }
+    board[row][column] = player
+    if(winner(board,'X')){
         displayBoard(board)
-        }
-    
+        console.log('Player 1 wins!')
+        break
+    } else if(winner(board,'O')){
+        displayBoard(board)
+        console.log('Player 2 wins!')
+        break
+    } else if(drawCheck(board)){
+        displayBoard(board)
+        console.log('*spooky western music* This game ends in a draw pardner.')
+    } else {   
+        displayBoard(board)
+    }
 }
 
-/* experiments with a big board */
 
 function displayBoard(gameState){
     let [[p1, p2, p3],[p4, p5, p6],[p7, p8, p9]] = gameState
@@ -60,16 +56,8 @@ function displayBoard(gameState){
         ['\n', '—','+','—','+','—'],
         ['\n', p7,'|', p8,'|', p9]
     ]
-    /*
-    console.log(...bigBoard[0])
-    console.log(...bigBoard[1])
-    console.log(...bigBoard[2])
-    console.log(...bigBoard[3])
-    console.log(...bigBoard[4])
-    */
     console.log(...bigBoard[0],...bigBoard[1],...bigBoard[2],...bigBoard[3],...bigBoard[4])
-    }
-
+}
 
 function winner(gameBoard, player) {
     if(rowCheck(gameBoard[0], player) == true || rowCheck(gameBoard[1], player) == true || rowCheck(gameBoard[2], player) == true){
@@ -103,12 +91,6 @@ function columnCheck(arr,player){
 }
 
 function diagCheck(arr, player){
-    /* console.log(displayBoard(board))
-    console.log(player)
-    console.log(arr[1][1])
-    console.log(arr[0][0])
-    console.log(arr[2][2])
-    */
     if(player == arr[1][1] && ((arr[1][1] == arr[0][0] && arr[0][0] == arr[2][2]) || (arr[1][1] == arr[0][2] && arr[0][2] == arr[2][0]))){
         return true
     } else {
