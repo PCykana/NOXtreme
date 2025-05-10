@@ -1,6 +1,7 @@
 const playerOneSymbol = 'X'
 const playerTwoSymbol = 'O'
 let player = ''
+let stamp = ''
 const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 // [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']] <-- this stays for quick copy/paste re-sets if i need to troubleshoot a function
 
@@ -13,7 +14,7 @@ for (let i = 0; i < 9; i++) {
 
     playerCheck(i)
 
-    console.log("It's ", player,"'s turn") 
+    console.log(`It's ${player}'s turn (${stamp})`) 
     
     while (checkPosition) {
         column = Math.floor(Math.random() * 3)
@@ -27,7 +28,7 @@ for (let i = 0; i < 9; i++) {
         }
     }
 
-    board[row][column] = player
+    board[row][column] = stamp
 
     if(winner(board,'X')){
         displayBoard(board)
@@ -60,9 +61,11 @@ function displayBoard(gameState){
 
 function playerCheck(i){
     if(i % 2 == 0) {
-        player = playerOneSymbol
+        player = 'Player 1'
+        stamp = playerOneSymbol
     } else if(i % 2 == 1) {
-        player = playerTwoSymbol
+        player = "Player 2"
+        stamp = playerTwoSymbol
     } else { 
         console.log('error')
     }
