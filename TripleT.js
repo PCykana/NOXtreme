@@ -30,15 +30,11 @@ for (let i = 0; i < 9; i++) {
 
     board[row][column] = stamp
 
-    if(winner(board,'X')){
+    if(winner(board, stamp)){
         displayBoard(board)
-        console.log('Player 1 wins!')
+        console.log(`${player} wins!`)
         break
-    } else if(winner(board,'O')){
-        displayBoard(board)
-        console.log('Player 2 wins!')
-        break
-    } else if(drawCheck(board)){
+    }  else if(drawCheck(board)){
         displayBoard(board)
         console.log('*spooky western music* This game ends in a draw pardner.')
     } else {   
