@@ -104,5 +104,12 @@ function diagCheck(arr, player){
 }
 
 function drawCheck(arr){
-    return(arr.includes(' '))
+    let isADraw = false
+    for(let d = 0; d < array.length; d++) {
+        if(arr[d].includes(' ')){
+        isADraw = true
+        break
+        }
+    }
+    return isADraw
 }
