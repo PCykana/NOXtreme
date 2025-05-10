@@ -4,19 +4,20 @@ const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 
 
 //function createPosition () {
-
+console.log(displayBoard(board))
 for (let i = 0; i < 9; i++) {
     
     let row = 0
     let column = 0
     let checkPosition = true
         while (checkPosition) {
-        column = Math.floor(Math.random() * 3)
-        row = Math.floor(Math.random() * 3)
-        console.log(row,column)
-        if(board[row][column] == ' '){
+            column = Math.floor(Math.random() * 3)
+            row = Math.floor(Math.random() * 3)
+            
+            console.log(row,column)
+            if(board[row][column] == ' '){
             checkPosition = false
-        } else {
+            } else {
             checkPosition = true
         }
         }
@@ -25,11 +26,10 @@ for (let i = 0; i < 9; i++) {
         } else if(i % 2 == 1) {
             board[row][column] = 'O'
         } else { console.log('error')}
-
-   setTimeout(displayBoard(board), '3000')
+        
+        console.log(displayBoard(board))
     
 }
-
 
 /* experiments with a big board */
 function displayBoard(gameState){
@@ -40,6 +40,7 @@ function displayBoard(gameState){
     console.log(...bigBoard[2])
     console.log(...bigBoard[3])
     console.log(...bigBoard[4])
+    return " "
     }
     
 
