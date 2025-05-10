@@ -4,6 +4,7 @@ const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 // [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 
 //function createPosition () {
+
 console.log(displayBoard(board))
 
 for (let i = 0; i < 9; i++) {
@@ -35,7 +36,7 @@ for (let i = 0; i < 9; i++) {
             console.log(displayBoard(board))
             console.log('Player 2 wins!')
             break
-        } else{
+        } else {
         console.log(displayBoard(board))
         }
     
@@ -54,14 +55,14 @@ function displayBoard(gameState){
     return " "
     }
 
- 
+
 function winner(gameBoard, player) {
     if(rowCheck(gameBoard[0], player) == true || rowCheck(gameBoard[1], player) == true || rowCheck(gameBoard[2], player) == true){
         return true
     }else if(columnCheck(gameBoard, player) == true ){
         return true
     }else if(diagCheck(gameBoard, player)){
-
+        return true
     }else {
         return false
     }
@@ -87,10 +88,16 @@ function columnCheck(arr,player){
 }
 
 function diagCheck(arr, player){
+    /* console.log(displayBoard(board))
+    console.log(player)
+    console.log(arr[1][1])
+    console.log(arr[0][0])
+    console.log(arr[2][2])
+    */
     if(player == arr[1][1] && ((arr[1][1] == arr[0][0] && arr[0][0] == arr[2][2]) || (arr[1][1] == arr[0][2] && arr[0][2] == arr[2][0]))){
         return true
-
-    }else{
+    } else {
         return false
     }
 }
+
