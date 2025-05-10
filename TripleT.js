@@ -1,12 +1,18 @@
-let playerOneSymbol = 'X'
-let playerTwoSymbol = 'O'
+const playerOneSymbol = 'X'
+const playerTwoSymbol = 'O'
+let player = ''
 const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 // [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 
 
-console.log(displayBoard(board))
+displayBoard(board)
 for (let i = 0; i < 9; i++) {
-    
+    if(i % 2 == 0) {
+        player = playerOneSymbol
+    } else if(i % 2 == 1) {
+        player = playerTwoSymbol
+    } else { console.log('error')}
+    console.log("It's ", player,"'s turn") 
     let row = 0
     let column = 0
     let checkPosition = true
@@ -27,18 +33,18 @@ for (let i = 0; i < 9; i++) {
             board[row][column] = playerTwoSymbol
         } else { console.log('error')}
         if(winner(board,'X')){
-            console.log(displayBoard(board))
+            displayBoard(board)
             console.log('Player 1 wins!')
             break
         } else if(winner(board,'O')){
-            console.log(displayBoard(board))
+            displayBoard(board)
             console.log('Player 2 wins!')
             break
         } else if(drawCheck(board)){
-            console.log(displayBoard(board))
+            displayBoard(board)
             console.log('*spooky western music* This game ends in a draw pardner.')
-        } else {
-        console.log(displayBoard(board))
+        } else {   
+        displayBoard(board)
         }
     
 }
@@ -53,7 +59,6 @@ function displayBoard(gameState){
     console.log(...bigBoard[2])
     console.log(...bigBoard[3])
     console.log(...bigBoard[4])
-    return " "
     }
 
 
