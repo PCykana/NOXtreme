@@ -3,10 +3,8 @@ let playerTwoSymbol = 'O'
 const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 // [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 
-//function createPosition () {
 
 console.log(displayBoard(board))
-
 for (let i = 0; i < 9; i++) {
     
     let row = 0
@@ -24,9 +22,9 @@ for (let i = 0; i < 9; i++) {
         }
         }
         if(i % 2 == 0) {
-            board[row][column] = 'X'
+            board[row][column] = playerOneSymbol
         } else if(i % 2 == 1) {
-            board[row][column] = 'O'
+            board[row][column] = playerTwoSymbol
         } else { console.log('error')}
         if(winner(board,'X')){
             console.log(displayBoard(board))
