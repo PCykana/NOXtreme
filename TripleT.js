@@ -66,7 +66,6 @@ function winner(gameBoard, player) {
 }
 
 function rowCheck(arr, player) {
-
     if(player == arr[0] && arr[0] == arr[1] && arr[1] == arr[2]){
         return true
     } else {
@@ -85,3 +84,11 @@ function columnCheck(arr,player){
     return isAWin
 }
 
+function diagCheck(arr, player){
+    if(player == arr[1][1] && ((arr[1][1] == arr[0][0] && arr[0][0] == arr[2][2]) || (arr[1][1] == arr[0][2] && arr[0][2] == arr[2][0]))){
+        return true
+
+    }else{
+        return false
+    }
+}
