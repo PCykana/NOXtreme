@@ -53,12 +53,21 @@ for (let i = 0; i < 9; i++) {
 
 function displayBoard(gameState){
     let [[p1, p2, p3],[p4, p5, p6],[p7, p8, p9]] = gameState
-    const bigBoard = [[p1,'|', p2,'|', p3],['—','+','—','+','—'],[p4,'|', p5,'|', p6],['—','+','—','+','—'],[p7,'|', p8,'|', p9]]
+    const bigBoard = [
+        ['\n', p1,'|', p2,'|', p3],
+        ['\n', '—','+','—','+','—'],
+        ['\n', p4,'|', p5,'|', p6],
+        ['\n', '—','+','—','+','—'],
+        ['\n', p7,'|', p8,'|', p9]
+    ]
+    /*
     console.log(...bigBoard[0])
     console.log(...bigBoard[1])
     console.log(...bigBoard[2])
     console.log(...bigBoard[3])
     console.log(...bigBoard[4])
+    */
+    console.log(...bigBoard[0],...bigBoard[1],...bigBoard[2],...bigBoard[3],...bigBoard[4])
     }
 
 
