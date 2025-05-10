@@ -10,6 +10,7 @@ for (let i = 0; i < 9; i++) {
     let row = 0
     let column = 0
     let checkPosition = true
+
     if(i % 2 == 0) {
         player = playerOneSymbol
     } else if(i % 2 == 1) {
@@ -17,19 +18,21 @@ for (let i = 0; i < 9; i++) {
     } else { 
         console.log('error')
     }
+
     console.log("It's ", player,"'s turn") 
     
     while (checkPosition) {
         column = Math.floor(Math.random() * 3)
         row = Math.floor(Math.random() * 3)    
-        console.log(row,column)
         if(board[row][column] == ' '){
             checkPosition = false
         } else {
             checkPosition = true
         }
     }
+
     board[row][column] = player
+
     if(winner(board,'X')){
         displayBoard(board)
         console.log('Player 1 wins!')
@@ -54,15 +57,15 @@ function displayBoard(gameState){
         ['\n', '—','+','—','+','—'],
         ['\n', p4,'|', p5,'|', p6],
         ['\n', '—','+','—','+','—'],
-        ['\n', p7,'|', p8,'|', p9]
+        ['\n', p7,'|', p8,'|', p9,'\n']
     ]
     console.log(...bigBoard[0],...bigBoard[1],...bigBoard[2],...bigBoard[3],...bigBoard[4])
 }
 
 function winner(gameBoard, player) {
-    if(rowCheck(gameBoard[0], player) == true || rowCheck(gameBoard[1], player) == true || rowCheck(gameBoard[2], player) == true){
+    if(rowCheck(gameBoard[0], player) || rowCheck(gameBoard[1], player) || rowCheck(gameBoard[2], player)){
         return true
-    }else if(columnCheck(gameBoard, player) == true ){
+    }else if(columnCheck(gameBoard, player)){
         return true
     }else if(diagCheck(gameBoard, player)){
         return true
@@ -81,7 +84,7 @@ function rowCheck(arr, player) {
 
 function columnCheck(arr,player){
     let isAWin = false   
-    for (let c = 0; c < 3; c++) {
+    for (let c = 0; c < arr.length; c++) {
         if(player == arr[0][c] && arr[0][c] == arr[1][c] && arr[1][c] == arr[2][c]){
             isAWin = true
             break
