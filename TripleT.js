@@ -6,6 +6,13 @@ const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 // [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']] <-- this stays for quick copy/paste re-sets if i need to troubleshoot a function
 const playerCheck = (i) => (i % 2 == 0) ? (player = 'Player 1', stamp = playerOneSymbol) : (i % 2 == 1) ? (player = 'Player 2', stamp = playerTwoSymbol) : console.log('Error')
 
+const winner = (gameBoard, player) => 
+    rowCheck(gameBoard[0], player) || rowCheck(gameBoard[1], player) || rowCheck(gameBoard[2], player) ? true 
+    : columnCheck(gameBoard, player)? true
+    : diagCheck(gameBoard,player) ? true
+    : false
+
+
 displayBoard(board)
 for (let i = 0; i < 9; i++) {
     let row = 0
@@ -69,7 +76,7 @@ function playerCheck(i){
 }
 */
 
-
+/*
 function winner(gameBoard, player) {
     if(rowCheck(gameBoard[0], player) || rowCheck(gameBoard[1], player) || rowCheck(gameBoard[2], player)){
         return true
@@ -81,7 +88,7 @@ function winner(gameBoard, player) {
         return false
     }
 }
-
+    */
 
 
 function rowCheck(arr, player) {
