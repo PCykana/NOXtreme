@@ -4,15 +4,18 @@ let player = ''
 let stamp = ''
 const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 // [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']] <-- this stays for quick copy/paste re-sets if i need to troubleshoot a function
-const playerCheck = (i) => (i % 2 == 0) ? (player = 'Player 1', stamp = playerOneSymbol) : (i % 2 == 1) ? (player = 'Player 2', stamp = playerTwoSymbol) : console.log('Error')
+const playerCheck = (i) => (i % 2 == 0) ? (player = 'Player 1', stamp = playerOneSymbol) : (i % 2 == 1) ? (player = 'Player 2', stamp = playerTwoSymbol) : console.log('Error') // switches player based on modulo operator of current loop iteration passed in as i
 
-const winner = (gameBoard, player) => 
-    rowCheck(gameBoard[0], player) || rowCheck(gameBoard[1], player) || rowCheck(gameBoard[2], player) ? true 
-    : columnCheck(gameBoard, player)? true
-    : diagCheck(gameBoard,player) ? true
-    : false
+const winner = (gameBoard, symbol) => // makes a function for going through win states
+    rowCheck(gameBoard[0], symbol) || rowCheck(gameBoard[1], symbol) || rowCheck(gameBoard[2], symbol) ? true // checks each row to see if there is a win
+    : columnCheck(gameBoard, symbol)? true // checks each column to see if there is a win
+    : diagCheck(gameBoard, symbol) ? true // checks both diagonals for a win returns true 
+    : false // retruns false to continue game
 
+const rowCheck = (arr, player) => player == arr[0] && arr[0] == arr[1] && arr[1] == arr[2] ? true : false // checks to see if all the characters in a row match the current player character
+const diagCheck = (arr, player) => player == arr[1][1] && ((arr[1][1] == arr[0][0] && arr[0][0] == arr[2][2]) || (arr[1][1] == arr[0][2] && arr[0][2] == arr[2][0])) ? true : false // checks to see if all the characters in a diagonal match the current player character
 
+// the game call it self
 displayBoard(board)
 for (let i = 0; i < 9; i++) {
     let row = 0
@@ -90,7 +93,7 @@ function winner(gameBoard, player) {
 }
     */
 
-
+/*
 function rowCheck(arr, player) {
     if(player == arr[0] && arr[0] == arr[1] && arr[1] == arr[2]){
         return true
@@ -98,6 +101,8 @@ function rowCheck(arr, player) {
         return false
     }
 }
+*/
+
 
 function columnCheck(arr,player){
     let isAWin = false   
@@ -109,7 +114,7 @@ function columnCheck(arr,player){
     }
     return isAWin
 }
-
+/*
 function diagCheck(arr, player){
     if(player == arr[1][1] && ((arr[1][1] == arr[0][0] && arr[0][0] == arr[2][2]) || (arr[1][1] == arr[0][2] && arr[0][2] == arr[2][0]))){
         return true
@@ -117,6 +122,7 @@ function diagCheck(arr, player){
         return false
     }
 }
+*/
 
 function drawCheck(arr){
     let isADraw = true
