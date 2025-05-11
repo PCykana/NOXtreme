@@ -4,14 +4,13 @@ let player = ''
 let stamp = ''
 const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
 // [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']] <-- this stays for quick copy/paste re-sets if i need to troubleshoot a function
-
+const playerCheck = (i) => (i % 2 == 0) ? (player = 'Player 1', stamp = playerOneSymbol) : (i % 2 == 1) ? (player = 'Player 2', stamp = playerTwoSymbol) : console.log('Error')
 
 displayBoard(board)
 for (let i = 0; i < 9; i++) {
     let row = 0
     let column = 0
     let checkPosition = true
-
     playerCheck(i)
 
     console.log(`It's ${player}'s turn (${stamp})`) 
@@ -55,6 +54,8 @@ function displayBoard(gameState){
     console.log(...bigBoard[0],...bigBoard[1],...bigBoard[2],...bigBoard[3],...bigBoard[4])
 }
 
+
+/*
 function playerCheck(i){
     if(i % 2 == 0) {
         player = 'Player 1'
@@ -66,6 +67,8 @@ function playerCheck(i){
         console.log('error')
     }
 }
+*/
+
 
 function winner(gameBoard, player) {
     if(rowCheck(gameBoard[0], player) || rowCheck(gameBoard[1], player) || rowCheck(gameBoard[2], player)){
@@ -78,6 +81,8 @@ function winner(gameBoard, player) {
         return false
     }
 }
+
+
 
 function rowCheck(arr, player) {
     if(player == arr[0] && arr[0] == arr[1] && arr[1] == arr[2]){
