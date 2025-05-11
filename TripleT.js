@@ -1,8 +1,8 @@
-const playerOneSymbol = 'X'
-const playerTwoSymbol = 'O'
-let player = ''
-let stamp = ''
-const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']]
+const playerOneSymbol = 'X' // creates a constant to hold the symbol for player 1
+const playerTwoSymbol = 'O' // creates a constant to hold the symbol for player 2
+let player = '' // creates an empty string placeholder to swap between player identification for player turn output
+let stamp = '' // creates an empty string variable placeholder to swap between player symbols when updating the board state
+const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']] // not null but it's the empty(space character filled) array of arrays to keep track of the game board
 // [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']] <-- this stays for quick copy/paste re-sets if i need to troubleshoot a function
 const playerCheck = (i) => (i % 2 == 0) ? (player = 'Player 1', stamp = playerOneSymbol) : (i % 2 == 1) ? (player = 'Player 2', stamp = playerTwoSymbol) : console.log('Error') // switches player based on modulo operator of current loop iteration passed in as i
 
@@ -51,10 +51,12 @@ for (let i = 0; i < 9; i++) {
     }
 }
 
-
-function displayBoard(gameState){
+// displayBoard function creates a visually appealing board by destructuring the game board, passed in as gameState,
+// and places the values in a larger arry with character formatting to visually create rows and columns.
+// function then displays the inner arrays with the spread operator to remove the array's commas and brackets
+function displayBoard(gameState){      
     let [[p1, p2, p3],[p4, p5, p6],[p7, p8, p9]] = gameState
-    const bigBoard = [
+    const bigBoard = [                          
         ['\n', p1,'|', p2,'|', p3],
         ['\n', '—','+','—','+','—'],
         ['\n', p4,'|', p5,'|', p6],
