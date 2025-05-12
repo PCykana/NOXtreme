@@ -27,6 +27,9 @@ const columnCheck = (arr, col, symbol) => symbol == arr[0][col] && arr[0][col] =
 // checks to see if all the characters in a diagonal match the current player character
 const diagCheck = (arr, symbol) => symbol == arr[1][1] && ((arr[1][1] == arr[0][0] && arr[0][0] == arr[2][2]) || (arr[1][1] == arr[0][2] && arr[0][2] == arr[2][0])) ? (finalMessage =`${player} wins on a diagonal!`, true) : false 
 
+// checks to see if any rows include spaces
+const drawCheck = arr => (arr[0].includes(' ') || arr[1].includes(' ') || arr[2].includes(' ')) ? false : (finalMessage = '*spooky western music* This game ends in a draw pardner.', true)
+
 // the game call it self
 displayBoard(board)    
 // the main for loop- each iteration is a turn
@@ -61,20 +64,6 @@ for (let i = 0; i < 9; i++) {
     
  }
 displayBoard(board, finalMessage)
-
-
-function drawCheck(arr){
-    let isADraw = true
-    for(let d = 0; d <arr.length; d++) {
-        if(arr[d].includes(' ')){
-        isADraw = false
-        break
-        }else{
-            finalMessage = '*spooky western music* This game ends in a draw pardner.' 
-        }
-    }
-    return isADraw
-}
 
 /*!SECTION original ES5 function versions and non-es6 refactors for functions that have been changed to ES6
 
@@ -163,6 +152,18 @@ function diagCheck(arr, player){
         return false
     }
 }
-*/
+ 
+function drawCheck(arr){
+    let isADraw = true
+    for(let d = 0; d <arr.length; d++) {
+        if(arr[d].includes(' ')){
+        isADraw = false
+        break
+        }else{
+            finalMessage = '*spooky western music* This game ends in a draw pardner.' 
+        }
+    }
+    return isADraw
+}
 
-const checkRow = (row) => board[row][column] == board[row][column-1] && board[row][column] == board[row][column+1]
+*/
