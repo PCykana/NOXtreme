@@ -34,11 +34,7 @@ for (let i = 0; i < 9; i++) {
         row = Math.floor(Math.random() * 3)
         console.log(row,column)  // Re-entered and commented out because I think it's neat for showing people
         // but doesn't need to be on all the time
-        if(board[row][column] == ' '){
-            checkPosition = false
-        } else {
-            checkPosition = true
-        }
+        board[row][column] == ' ' ? checkPosition = false : checkPosition = true
     }
     
     board[row][column] = stamp
