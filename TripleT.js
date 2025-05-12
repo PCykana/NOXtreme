@@ -2,33 +2,37 @@ const playerOneSymbol = 'X' // creates a constant to hold the symbol for player 
 const playerTwoSymbol = 'O' // creates a constant to hold the symbol for player 2
 let player = '' // creates an empty string placeholder to swap between player identification for player turn output
 let stamp = '' // creates an empty string variable placeholder to swap between player symbols when updating the board state
+let finalMessage = ''
 const board = [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']] // not null but it's the empty(space character filled) array of arrays to keep track of the game board
 // [[' ',' ',' '],[' ',' ',' '],[' ',' ',' ']] <-- this stays for quick copy/paste re-sets if i need to troubleshoot a function
+const displayBoard = ([[p1, p2, p3],[p4, p5, p6],[p7, p8, p9]] = gameState, message = '') => console.log(`\n ${p1} | ${p2} | ${p3}\n — + — + —\n ${p4} | ${p5} | ${p6} \n — + — + —\n ${p7} | ${p8} | ${p9}\n\n${message}`)
 const playerCheck = (i) => (i % 2 == 0) ? (player = 'Player 1', stamp = playerOneSymbol) : (i % 2 == 1) ? (player = 'Player 2', stamp = playerTwoSymbol) : console.log('Error') // switches player based on modulo operator of current loop iteration passed in as i
 
 const winner = (gameBoard, symbol) => // makes a function for going through win states
-    rowCheck(gameBoard[0], symbol) || rowCheck(gameBoard[1], symbol) || rowCheck(gameBoard[2], symbol) ? true // checks each row to see if there is a win
+    rowCheck(gameBoard[0], symbol, 1) || rowCheck(gameBoard[1], symbol, 2) || rowCheck(gameBoard[2], symbol, 3) ? true // checks each row to see if there is a win
     : columnCheck(gameBoard, symbol)? true // checks each column to see if there is a win
     : diagCheck(gameBoard, symbol) ? true // checks both diagonals for a win returns true 
     : false // retruns false to continue game
 
-const rowCheck = (arr, player) => player == arr[0] && arr[0] == arr[1] && arr[1] == arr[2] ? true : false // checks to see if all the characters in a row match the current player character
-const diagCheck = (arr, player) => player == arr[1][1] && ((arr[1][1] == arr[0][0] && arr[0][0] == arr[2][2]) || (arr[1][1] == arr[0][2] && arr[0][2] == arr[2][0])) ? true : false // checks to see if all the characters in a diagonal match the current player character
+const rowCheck = (arr, symbol, row) => symbol== arr[0] && arr[0] == arr[1] && arr[1] == arr[2] ? (finalMessage =`${player} wins on row ${row}!`, true) : false // checks to see if all the characters in a row match the current player character
+const diagCheck = (arr, symbol) => symbol == arr[1][1] && ((arr[1][1] == arr[0][0] && arr[0][0] == arr[2][2]) || (arr[1][1] == arr[0][2] && arr[0][2] == arr[2][0])) ? (finalMessage =`${player} wins on a diagonal!`, true) : false // checks to see if all the characters in a diagonal match the current player character
+
 
 // the game call it self
-displayBoard(board)
+displayBoard(board)    
+
 for (let i = 0; i < 9; i++) {
     let row = 0
     let column = 0
     let checkPosition = true
     playerCheck(i)
 
-    console.log(`It's ${player}'s turn (${stamp})`) 
+    console.log(`It's ${player}'s turn (${stamp})\n`) 
     
     while (checkPosition) {
         column = Math.floor(Math.random() * 3)
         row = Math.floor(Math.random() * 3)
-        // console.log(row,column)  // Re-entered and commented out because I think it's neat for showing people
+        console.log(row,column)  // Re-entered and commented out because I think it's neat for showing people
         // but doesn't need to be on all the time
         if(board[row][column] == ' '){
             checkPosition = false
@@ -36,27 +40,32 @@ for (let i = 0; i < 9; i++) {
             checkPosition = true
         }
     }
-
+    
     board[row][column] = stamp
+   
 
     if(winner(board, stamp)){
-        displayBoard(board)
-        console.log(`${player} wins!`)
         break
     }  else if(drawCheck(board)){
-        displayBoard(board)
-        console.log('*spooky western music* This game ends in a draw pardner.')
+        break
     } else {   
-        displayBoard(board)
+        displayBoard(board,`${player} chooses row ${row+1}, column ${column+1}.\n`)
     }
-}
+
+ //winner(board,stamp) ? (displayBoard(board, `${player} wins!`), while = break) :
+    
+ }
+displayBoard(board, finalMessage)
+
+
 
 // displayBoard function creates a visually appealing board by destructuring the game board, passed in as gameState,
 // and places the values in a larger arry with character formatting to visually create rows and columns.
 // function then displays the inner arrays with the spread operator to remove the array's commas and brackets
+/*
 function displayBoard(gameState){      
     let [[p1, p2, p3],[p4, p5, p6],[p7, p8, p9]] = gameState
-    const bigBoard = [                          
+    const bigBoard = [      
         ['\n', p1,'|', p2,'|', p3],
         ['\n', '—','+','—','+','—'],
         ['\n', p4,'|', p5,'|', p6],
@@ -66,6 +75,15 @@ function displayBoard(gameState){
     console.log(...bigBoard[0],...bigBoard[1],...bigBoard[2],...bigBoard[3],...bigBoard[4])
 }
 
+*/
+// displayBoard function creates a visually appealing board by destructuring the game board, passed in as gameState,
+// and laces those values in a console logged string to create the illusion of a game board.
+/*
+function displayBoard(gameState){      
+    let [[p1, p2, p3],[p4, p5, p6],[p7, p8, p9]] = gameState
+    console.log(`\n ${p1} | ${p2} | ${p3}\n — + — + —\n ${p4} | ${p5} | ${p6} \n — + — + —\n ${p7} | ${p8} | ${p9}\n`)
+}
+*/
 
 /*
 function playerCheck(i){
@@ -106,16 +124,19 @@ function rowCheck(arr, player) {
 */
 
 
-function columnCheck(arr,player){
+function columnCheck(arr,symbol){
     let isAWin = false   
     for (let c = 0; c < arr.length; c++) {
-        if(player == arr[0][c] && arr[0][c] == arr[1][c] && arr[1][c] == arr[2][c]){
+        if(symbol == arr[0][c] && arr[0][c] == arr[1][c] && arr[1][c] == arr[2][c]){
+            finalMessage =`${player} wins on column ${c+1}!`
             isAWin = true
             break
         }
     }
     return isAWin
 }
+//const columnCheck = (arr, player, isAWin = false)
+
 /*
 function diagCheck(arr, player){
     if(player == arr[1][1] && ((arr[1][1] == arr[0][0] && arr[0][0] == arr[2][2]) || (arr[1][1] == arr[0][2] && arr[0][2] == arr[2][0]))){
@@ -132,6 +153,8 @@ function drawCheck(arr){
         if(arr[d].includes(' ')){
         isADraw = false
         break
+        }else{
+            finalMessage = '*spooky western music* This game ends in a draw pardner.' 
         }
     }
     return isADraw
