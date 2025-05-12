@@ -30,40 +30,36 @@ const diagCheck = (arr, symbol) => symbol == arr[1][1] && ((arr[1][1] == arr[0][
 // checks to see if any rows include spaces
 const drawCheck = arr => (arr[0].includes(' ') || arr[1].includes(' ') || arr[2].includes(' ')) ? false : (finalMessage = '*spooky western music* This game ends in a draw pardner.', true)
 
-// the game call it self
-displayBoard(board)    
-// the main for loop- each iteration is a turn
-for (let i = 0; i < 9; i++) {
+displayBoard(board)    // the game call itself 
+
+for (let i = 0; i < 9; i++) {// the main for loop, each iteration is a turn
     let row = 0 // creates an internally scoped variable for row
     let column = 0 // creates an internally scoped variable for column
     let checkPosition = true // creates an assignable condition to regulate the while loop so it knows when to stop generating new numbers
-    playerCheck(i)
+    playerCheck(i) // passes the current iteration into the playerCheck function to get the right information into the variables
 
-    console.log(`It's ${player}'s turn (${stamp})\n`) 
+    console.log(`It's ${player}'s turn (${stamp})\n`) //outputs the player turn
     
-    while (checkPosition) {
-        column = Math.floor(Math.random() * 3)
-        row = Math.floor(Math.random() * 3)
+    while (checkPosition) { // creates a while loop to generate random coordinates for the next move
+        column = Math.floor(Math.random() * 3) // generates a column number - generates a random number between 0 and 3 and stores it in the column variable
+        row = Math.floor(Math.random() * 3) // generates a row number - generates a random number between 0 and 3 and stores it in the row variable.
         console.log(row,column)  // Re-entered and commented out because I think it's neat for showing people
         // but doesn't need to be on all the time
-        board[row][column] == ' ' ? checkPosition = false : checkPosition = true
+        board[row][column] == ' ' ? checkPosition = false : checkPosition = true //checks to see that the position generated is not already filled
+        //  and ends the while loop by setting the while loop variable to false
     }
     
-    board[row][column] = stamp
-   
+    board[row][column] = stamp // places the player icon (X or O)
 
-    if(winner(board, [row, column], stamp)){
-        break
-    }  else if(drawCheck(board)){
-        break
-    } else {   
-        displayBoard(board,`${player} chooses row ${row+1}, column ${column+1}.\n`)
+    if(winner(board, [row, column], stamp)){ // calls the win wrangler to check for win conditions
+        break // breaks the outer for loop that handles turns to end the game if there is a win condition
+    }  else if(drawCheck(board)){ // checks the board for a draw if there is no win
+        break //breaks the outer for loop that handles turns and ends the game 
+    } else {   // if not win or draw display the board
+        displayBoard(board,`${player} chooses row ${row+1}, column ${column+1}.\n`) // calls the display board function to display the board and sends a string to display the player's chosen position at the end
     }
-
- //winner(board,stamp) ? (displayBoard(board, `${player} wins!`), while = break) :
-    
  }
-displayBoard(board, finalMessage)
+displayBoard(board, finalMessage) // the for loop has ended displays the current game state and current value of final message
 
 /*!SECTION original ES5 function versions and non-es6 refactors for functions that have been changed to ES6
 
