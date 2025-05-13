@@ -66,3 +66,4 @@ function getPosition(){ // creates the getPosition function which will randomly 
         }
         return [row, column] //returns the row  and column in a temporary array to be destructured into row and column variables outside the funciton
     }
+//nice
