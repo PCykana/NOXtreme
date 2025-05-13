@@ -47,12 +47,13 @@ for (let i = 0; i < 9; i++) {// the main for loop, each iteration is a turn
     } else {   // if not win or draw display the board
         displayBoard(board,`${player} chooses row ${row+1}, column ${column+1}.\n`) // calls the display board function to display the board and sends a string to display the player's chosen position at the end
     }
- }
+}
+
 displayBoard(board, finalMessage) // the for loop has ended displays the current game state and current value of final message
 
-function getPosition(){
+function getPosition(){ // creates the getPosition function which will randomly generate row and column coordinates until it gets an empty space on the board.
     let row = 0 // creates an internally scoped variable for row
-    let column = 0 // creates an internally scoped variable for column
+    let column = 0 // creates an internally scoped variable for column  
     let checkPosition = true // creates an assignable condition to regulate the while loop so it knows when to stop generating new numbers
     
     while (checkPosition) { // creates a while loop to generate random coordinates for the next move
