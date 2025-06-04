@@ -31,25 +31,27 @@ const diagCheck = (arr, pos, symbol) => symbol == arr[1][1] && ((arr[1][1] == ar
 const drawCheck = (arr, pos) => (arr[0].includes(' ') || arr[1].includes(' ') || arr[2].includes(' ')) ? false : (finalMessage = `${player} chooses row ${pos[0]+1}, column ${pos[1]+1}.\n*spooky western music* This game ends in a draw pardner.`, true)
 
 displayBoard(board)    // displays the empty board before starting the main loop 
+noXtreme()
+function noXtreme (){
+    for (let i = 0; i < 9; i++) {// the main for loop, each iteration is a turn
+        playerCheck(i) // passes the current iteration into the playerCheck function to get the right information into the variables
+        console.log(`It's ${player}'s turn (${stamp}).\n`) //outputs the player turn
+        
+        let [row, column] = getPosition() // destructures the returned row and column identifiers into locally scoped variables
+        // row and column varialbes must be destuctured so that the board can be updated by putting the variables in as index calls for the board Array
+        board[row][column] = stamp // places the player icon (X or O)
 
-for (let i = 0; i < 9; i++) {// the main for loop, each iteration is a turn
-    playerCheck(i) // passes the current iteration into the playerCheck function to get the right information into the variables
-    console.log(`It's ${player}'s turn (${stamp}).\n`) //outputs the player turn
-    
-    let [row, column] = getPosition() // destructures the returned row and column identifiers into locally scoped variables
-    // row and column varialbes must be destuctured so that the board can be updated by putting the variables in as index calls for the board Array
-    board[row][column] = stamp // places the player icon (X or O)
-
-    if(winner(board, [row, column], stamp)){ // calls the win wrangler to check for win conditions
-        break // breaks the outer for loop that handles turns to end the game if there is a win condition
-    }  else if(drawCheck(board,[row, column])){ // checks the board for a draw if there is no win
-        break //breaks the outer for loop that handles turns and ends the game 
-    } else {   // if not win or draw display the board
-        displayBoard(board,`${player} chooses row ${row+1}, column ${column+1}.\n`) // calls the display board function to display the board and sends a string to display the player's chosen position at the end
+        if(winner(board, [row, column], stamp)){ // calls the win wrangler to check for win conditions
+            break // breaks the outer for loop that handles turns to end the game if there is a win condition
+        }  else if(drawCheck(board,[row, column])){ // checks the board for a draw if there is no win
+            break //breaks the outer for loop that handles turns and ends the game 
+        } else {   // if not win or draw display the board
+            displayBoard(board,`${player} chooses row ${row+1}, column ${column+1}.\n`) // calls the display board function to display the board and sends a string to display the player's chosen position at the end
+        }
     }
-}
 
 displayBoard(board, finalMessage) // the for loop has ended displays the current game state and current value of final message
+}
 
 function getPosition(){ // creates the getPosition function which will randomly generate row and column coordinates until it gets an empty space on the board.
     let row = 0 // creates an internally scoped variable for row
@@ -64,6 +66,6 @@ function getPosition(){ // creates the getPosition function which will randomly 
             board[row][column] == ' ' ? checkPosition = false : checkPosition = true //checks to see that the position generated is not already filled
             //  and ends the while loop by setting the while loop variable to false
         }
+//nice
         return [row, column] //returns the row  and column in a temporary array to be destructured into row and column variables outside the funciton
     }
-//nice
